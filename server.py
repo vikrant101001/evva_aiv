@@ -30,15 +30,14 @@ import time
 import os
 from dotenv import load_dotenv
 load_dotenv()
-
-openai.api_key = os.environ["OPENAI_API_KEY"]
+openai_api_key = os.environ.get("OPENAI_API_KEY")
+openai.api_key = openai_api_key
 
 
 print("hi")
 pointer = 0
 history = []
-API_SECRET = os.environ.get(
-    'API_SECRET')  
+API_SECRET = os.environ.get("API_SECRET")  
 
 #***************CHECKIN MODULE***********************************
 # Load existing data from the JSON file, if any
