@@ -11,18 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Python version
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
 
-      - name: Create and start virtual environment
+      - name: Create and activate virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
@@ -30,15 +27,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Create runtime.txt
-        run: echo "python-3.10" > runtime.txt
-
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip -r release.zip .
 
       - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: python-app
           path: |
@@ -53,23 +46,39 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: python-app
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+
+      - name: Check Azure CLI version
+        run: az --version
+
       - name: Azure CLI Login
         run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
-      - name: 'Set up environment variables from Key Vault'
+      - name: Set up environment variables from Key Vault
         id: keyvault
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Print Environment Variables
+        run: env | sort
+
+      - name: Retrieve secrets from Key Vault
         run: |
           export OPENAI_API_KEY=$(az keyvault secret show --vault-name evvaaikey --name OpenAIKey --query value -o tsv)
           export API_SECRET=$(az keyvault secret show --vault-name evvaaikey --name APISecret --query value -o tsv)
           export MAP_KEY=$(az keyvault secret show --vault-name evvaaikey --name MapKey --query value -o tsv)
-        
-      - name: Print Environment Variables
-        run: env | sort
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'evvaaiad'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B64EFF9C5D7A4E768D9DBE896AF6D7C3 }}
-          package: ./python-app/release.zip
+          package: ./release.zip
