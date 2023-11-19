@@ -40,9 +40,9 @@ credential = DefaultAzureCredential()
 secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 
 # Retrieve secrets from Azure Key Vault
-openai_api_key = secret_client.get_secret("OpenAIKey").value
-API_SECRET = secret_client.get_secret("APISecret").value
-map_key = secret_client.get_secret("MapKey").value
+openai_api_key = os.getenv("OPENAI_API_KEY")
+API_SECRET = os.getenv("API_SECRET")
+map_key = os.getenv("map_key")
 
 
 
