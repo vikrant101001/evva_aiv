@@ -66,10 +66,10 @@ jobs:
       - name: Print Environment Variables
         run: env | sort
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'evvaaiad'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B64EFF9C5D7A4E768D9DBE896AF6D7C3 }}
-          package: ./release.zip
+          package: ${{ github.workspace }}/release.zip
