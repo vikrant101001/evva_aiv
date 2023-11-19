@@ -30,14 +30,26 @@ import time
 import os
 from dotenv import load_dotenv
 load_dotenv()
-openai.api_key = os.getenv('OPENAI_API_KEY')
-openai_api_key = 'abcd'
+
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
+
+key_vault_url = "https://evvaaikey.vault.azure.net/"
+
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
+
+# Retrieve secrets from Azure Key Vault
+openai_api_key = secret_client.get_secret("OpenAIKey").value
+API_SECRET = secret_client.get_secret("APISecret").value
+map_key = secret_client.get_secret("MapKey").value
+
+
 
 
 print("hi")
 pointer = 0
 history = []
-API_SECRET = os.environ.get("API_SECRET")  
 
 #***************CHECKIN MODULE***********************************
 # Load existing data from the JSON file, if any
@@ -449,7 +461,7 @@ def splitter(text):
 
 # Define your Mapbox API access token
 
-mapbox_access_token = os.environ.get("MAP_KEY")
+mapbox_access_token = map_key
 
 
 def geocode_address(address, city, state, country, zipcode):
@@ -811,7 +823,7 @@ def ask():
       if "mapbox" in user_question.lower(
       ) or "mapboxapi" in user_question.lower():
         location = user_question
-        latitude, longitude = geocode(location, os.environ["MAP_KEY"])
+        latitude, longitude = geocode(location, map_key)
         answer = "Please provide your complete location so that we can find the nearest required professional for you: "
       else:
         docs = store.similarity_search(user_question)
