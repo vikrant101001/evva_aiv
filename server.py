@@ -30,8 +30,8 @@ import time
 import os
 from dotenv import load_dotenv
 load_dotenv()
-openai_api_key = os.getenv('OPENAI_API_KEY')
-openai.api_key = openai_api_key
+openai.api_key = os.getenv('OPENAI_API_KEY')
+openai_api_key = 'abcd'
 
 
 print("hi")
@@ -739,7 +739,7 @@ def train_ai():
   docs = []
   for sets in data:
     docs.extend(textSplitter.split_text(sets))
-  embeddings = OpenAIEmbeddings(openai_api_key=os.environ["OPENAI_API_KEY"])
+  embeddings = OpenAIEmbeddings(openai_api_key)
   store = FAISS.from_texts(docs, embeddings)
 
   faiss.write_index(store.index, "training.index")
@@ -1016,7 +1016,7 @@ def perform_action():
   docs = []
   for sets in data:
     docs.extend(textSplitter.split_text(sets))
-  embeddings = OpenAIEmbeddings(openai_api_key=os.environ["OPENAI_API_KEY"])
+  embeddings = OpenAIEmbeddings(openai_api_key)
   store = FAISS.from_texts(docs, embeddings)
 
   faiss.write_index(store.index, "training.index")
