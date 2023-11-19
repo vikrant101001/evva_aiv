@@ -50,35 +50,18 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: python-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-
-      - name: Check Azure CLI version
-        run: az --version
-
       - name: Azure CLI Login
         run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
-
       - name: 'Set up environment variables from Key Vault'
         id: keyvault
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Print Environment Variables
-        run: env | sort
-
-      - name: 'Retrieve secrets from Key Vault'
         run: |
           export OPENAI_API_KEY=$(az keyvault secret show --vault-name evvaaikey --name OpenAIKey --query value -o tsv)
           export API_SECRET=$(az keyvault secret show --vault-name evvaaikey --name APISecret --query value -o tsv)
           export MAP_KEY=$(az keyvault secret show --vault-name evvaaikey --name MapKey --query value -o tsv)
+        
+      - name: Print Environment Variables
+        run: env | sort
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
