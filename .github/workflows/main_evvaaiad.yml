@@ -18,7 +18,7 @@ jobs:
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
       - name: Set up Python version
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v1
         with:
           python-version: '3.10'
 
@@ -35,13 +35,15 @@ jobs:
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./* -x venv/\* -x .git/\*
+        run: zip -r release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
           name: python-app
-          path: release.zip
+          path: |
+            release.zip
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,6 +56,15 @@ jobs:
       - name: Azure CLI Login
         run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
+
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: python-app
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+
       - name: 'Set up environment variables from Key Vault'
         id: keyvault
         run: |
@@ -64,8 +75,9 @@ jobs:
       - name: Print Environment Variables
         run: env | sort
 
-      - name: Deploy to Azure Web App
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
         with:
           app-name: 'evvaaiad'
           slot-name: 'Production'
