@@ -104,4 +104,5 @@ zipp==3.5.0
 zope-event==4.5.0
 zope-interface==5.4.0
 azure-identity==1.7.1
-azure-keyvault-secrets==4.5.0
+azure-keyvault-secrets>=4.4.0,<4.6.0
+
