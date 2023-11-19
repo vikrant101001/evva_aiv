@@ -704,7 +704,7 @@ with open("training/master.txt", "r") as f:
 prompt = Prompt(template=promptTemplate,
                 input_variables=["history", "context", "question"])
 
-llmChain = LLMChain(prompt=prompt,llm=OpenAIChat(temperature=0.5,model_name="gpt-3.5-turbo-16k",openai_api_key=openai.api_key))
+llmChain = LLMChain(prompt=prompt,llm=OpenAIChat(temperature=0.5,model_name="gpt-3.5-turbo-16k",openai_api_key=openai_api_key))
 
 history = []
 
