@@ -448,7 +448,8 @@ def splitter(text):
 #Training
 
 # Define your Mapbox API access token
-mapbox_access_token = os.environ["MAP_KEY"]
+
+mapbox_access_token = os.environ.get("MAP_KEY")
 
 
 def geocode_address(address, city, state, country, zipcode):
