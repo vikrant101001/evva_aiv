@@ -70,4 +70,3 @@ jobs:
           app-name: 'evvaaiad'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B64EFF9C5D7A4E768D9DBE896AF6D7C3 }}
-          package: ${{ github.workspace }}/release.zip
