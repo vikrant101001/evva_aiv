@@ -83,7 +83,6 @@ jobs:
           echo "OPENAI_API_KEY: $OPENAI_API_KEY"
           echo "API_SECRET: $API_SECRET"
           echo "MAP_KEY: $MAP_KEY"
-          env | sort
 
 
 
