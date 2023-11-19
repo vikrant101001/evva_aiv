@@ -54,8 +54,9 @@ jobs:
 
     steps:
       - name: Azure CLI Login
-        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-
+        run: |
+          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+          az account show
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
@@ -63,14 +64,23 @@ jobs:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
+        run: |
+          unzip release.zip
+          ls -R
 
       - name: 'Set up environment variables from Key Vault'
         id: keyvault
         run: |
-          export OPENAI_API_KEY=$(az keyvault secret show --vault-name evvaaikey --name OpenAIKey --query value -o tsv)
-          export API_SECRET=$(az keyvault secret show --vault-name evvaaikey --name APISecret --query value -o tsv)
-          export MAP_KEY=$(az keyvault secret show --vault-name evvaaikey --name MapKey --query value -o tsv)
+          echo "OPENAI_API_KEY=$(az keyvault secret show --vault-name evvaaikey --name OpenAIKey --query value -o tsv)" >> $GITHUB_ENV
+          echo "API_SECRET=$(az keyvault secret show --vault-name evvaaikey --name APISecret --query value -o tsv)" >> $GITHUB_ENV
+          echo "MAP_KEY=$(az keyvault secret show --vault-name evvaaikey --name MapKey --query value -o tsv)" >> $GITHUB_ENV
+
+      - name: Print Azure Environment Variables
+        run: |
+          echo "Azure Environment Variables:"
+          echo "OPENAI_API_KEY: $OPENAI_API_KEY"
+          echo "API_SECRET: $API_SECRET"
+          echo "MAP_KEY: $MAP_KEY"
 
       - name: Print Environment Variables
         run: env | sort
@@ -83,8 +93,6 @@ jobs:
           echo "OPENAI_API_KEY: $OPENAI_API_KEY"
           echo "API_SECRET: $API_SECRET"
           echo "MAP_KEY: $MAP_KEY"
-
-
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
