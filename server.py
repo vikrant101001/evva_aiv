@@ -704,10 +704,7 @@ with open("training/master.txt", "r") as f:
 prompt = Prompt(template=promptTemplate,
                 input_variables=["history", "context", "question"])
 
-llmChain = LLMChain(prompt=prompt,
-                    llm=OpenAIChat(temperature=0.5,
-                                   model_name="gpt-3.5-turbo-16k",
-                                   openai_api_key=openai.api_key))
+llmChain = LLMChain(prompt=prompt,llm=OpenAIChat(temperature=0.5,model_name="gpt-3.5-turbo-16k",openai_api_key=openai.api_key))
 
 history = []
 
@@ -821,9 +818,7 @@ def ask():
         contexts = [
             f"Context {i}:\n{doc.page_content}" for i, doc in enumerate(docs)
         ]
-        answer = llmChain.predict(question=user_question,
-                                  context="\n\n".join(contexts),
-                                  history=history)
+        answer = llmChain.predict(question=user_question,context="\n\n".join(contexts),history=history)
 
         bot_answer = splitter(answer)
 
