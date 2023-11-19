@@ -75,11 +75,16 @@ jobs:
       - name: Print Environment Variables
         run: env | sort
 
-      - name: Print Azure Environment Variables
+      - name: Print Debug Information
         run: |
           echo "AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}"
           echo "AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}"
           echo "AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}"
+          echo "OPENAI_API_KEY: $OPENAI_API_KEY"
+          echo "API_SECRET: $API_SECRET"
+          echo "MAP_KEY: $MAP_KEY"
+          env | sort
+
 
 
       - name: 'Deploy to Azure Web App'
