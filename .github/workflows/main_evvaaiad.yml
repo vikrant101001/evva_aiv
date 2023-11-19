@@ -62,7 +62,8 @@ jobs:
         run: az --version
 
       - name: Azure CLI Login
-        run: az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
 
       - name: 'Set up environment variables from Key Vault'
         id: keyvault
