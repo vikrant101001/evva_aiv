@@ -13,6 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
@@ -60,11 +64,14 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Print Environment Variables
+        run: env | sort
+
       - name: 'Retrieve secrets from Key Vault'
         run: |
-          export OPENAI_API_KEY=$(az keyvault secret show --vault-name evvaaikey --name OPENAI_API_KEY --query value -o tsv)
-          export API_SECRET=$(az keyvault secret show --vault-name evvaaikey --name API_SECRET --query value -o tsv)
-          export MAP_KEY=$(az keyvault secret show --vault-name evvaaikey --name MAP_KEY --query value -o tsv)
+          export OPENAI_API_KEY=$(az keyvault secret show --vault-name evvaaikey --name OpenAIKey --query value -o tsv)
+          export API_SECRET=$(az keyvault secret show --vault-name evvaaikey --name APISecret --query value -o tsv)
+          export MAP_KEY=$(az keyvault secret show --vault-name evvaaikey --name MapKey --query value -o tsv)
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
