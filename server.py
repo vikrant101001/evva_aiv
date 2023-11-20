@@ -40,7 +40,7 @@ credential = DefaultAzureCredential()
 secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 
 # Retrieve secrets from Azure Key Vault
-#openai_api_key = os.getenv("OPENAI_API_KEY")
+openai_try = os.getenv("OPENAI_API_KEY")
 #API_SECRET = os.getenv("API_SECRET")
 #map_key = os.getenv("map_key")
 
@@ -769,6 +769,10 @@ def train_ai():
 def index():
   return "API Online"
 
+
+@app.route("/getopen", methods=["GET"])
+def opentry():
+  return openai_try
 
 def declare():
   username = "aiassistantevvaadmin"
