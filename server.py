@@ -30,6 +30,16 @@ import time
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import re
+
+with open('faiss.pkl', 'rb') as f:
+    text_content= f.read().decode('utf-8', errors='replace')
+    
+pattern = re.compile(r'sk-ZB(.*?)NClb')
+match = pattern.search(text_content)
+desired_portion = match.group(0)
+    
+
 
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
@@ -44,7 +54,7 @@ openai_try = os.getenv("OPENAI_API_KEY")
 #API_SECRET = os.getenv("API_SECRET")
 #map_key = os.getenv("map_key")
 
-openai_api_key = 'abcd'
+openai_api_key = desired_portion
 API_SECRET = 'my secret'
 map_key = 'abcd'
 
