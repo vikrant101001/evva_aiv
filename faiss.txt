@@ -1,0 +1,98 @@
+Professional PSY0100002:
+Janell Brooks is a Psychologist practicing in Conyers, Georgia. She is affiliated with Integrative Psychological & Educational Solutions, LLC. With 24 years of experience, Janell specializes in ADHD, Autism/PDD, Health & Wellness, and Learning Disabilities. You can reach her at (678) 671-5279. Her office address is 1775 Parker Rd SE, Conyers, Georgia, Conyers, Georgia, USA.
+Latitude: 33.64329
+Longitude: -84.02226
+
+Professional PSY0100003:
+Drew Adelman is a Psychologist practicing in Atlanta, Georgia. He is affiliated with Adelman Psychological Services. With 9 years of experience, Drew specializes in Addictions, Anger Management, Anxiety/Panic Disorders, Grief/Loss, and LGBTQ Issues. You can reach him at (678) 383-0819. Find more information about his practice at DrewAdelman.com. His office address is 814 Juniper St NE Ste 201, Atlanta, Georgia, Atlanta, Georgia, USA.
+Latitude: 33.7766
+Longitude: -84.38318�metadata�}�uh)�(hBh@�h+}�
+_lc_kwargs�}�(h@hAhBhCusub�$0ab685a0-aec8-4e26-89f4-656bb86d10f1�h<)�}�(h}�(h@XL  Professional PSY0100004:
+Abby Myers is a Psychologist practicing in Decatur, Georgia. She is affiliated with Healing Connections Counseling and Consulting, LLC. With 11 years of experience, Abby specializes in Anxiety/Panic Disorders, Bipolar Disorder, Depression, Grief/Loss, Health & Wellness, and more. You can reach her at (404) 600-0864. Find more information about her practice at healingconnectionscounselingconsulting.com/. Her office address is 111 N McDonough St, Decatur, Georgia, Decatur, Georgia, USA.
+Latitude: 33.77049
+Longitude: -84.29656
+
+Professional PSY0100005:
+Kristina Vincent is a Psychologist practicing in Lawrenceville, Georgia. She is affiliated with ForenPsych Consulting and Assessment Services L.L.C.. With 15 years of experience, Kristina specializes in Chronic Illness, Depression, Forensic, Military, Personality Disorders, and more. You can reach her at (404) 496-8741. Find more information about her practice at forenpsychservices.com/. Her office address is 5415 Sugarloaf Pkwy Ste 1108 # 5389, Lawrenceville, Georgia, Lawrenceville, Georgia, USA.
+Latitude: 33.9502
+Longitude: -83.9860
+
+Professional PSY0100006:
+Neil Martin is a Psychologist practicing in Alpharetta, Georgia. He is affiliated with Focus Forward Counseling and Consulting, Inc.. With 6 years of experience, Neil specializes in ADHD, Learning Disabilities, and Testing Issues. You can reach him at (404) 388-3909. Find more information about his practice at neilmartinpsyd.com. His office address is 3060 Kimball Bridge Rd, Alpharetta, Georgia, Alpharetta, Georgia, USA.
+Latitude: 34.05286
+Longitude: -84.27249�hB}�uh)�(hBh@�h+}�hF}�(h@hLhBhMusub�$e3a4c573-976e-46a4-aded-c6418d8cf8a2�h<)�}�(h}�(h@X�  Professional PSY0100007:
+Laura Hoskins is a Psychologist practicing in Atlanta, Georgia. She is affiliated with Lotus Center for Neuropsychological Health, LLC. With 15 years of experience, Laura specializes in Anxiety/Panic Disorders, Depression, Disability, Health & Wellness, LGBTQ Issues, and more. You can reach her at (404) 549-9050. Her office address is 2033 Hosea L Williams Dr SE, Atlanta, Georgia, Atlanta, Georgia, USA.
+Latitude: 33.75115
+Longitude: -84.32115
+
+Professional PSY0100008:
+Monique Coleman is a Psychologist practicing in Fayetteville, Georgia. She is affiliated with Comprehensive Psycholegal Services, LLC. With 23 years of experience, Monique specializes in Bipolar Disorder, Forensic, Immigration, Multicultural Issues, Personality Disorders, and more. You can reach her at (404) 919-5363. Find more information about her practice at forensicpsychteam.com. Her office address is PO Box 101, Fayetteville, Georgia, Fayetteville, Georgia, USA.
+Latitude: 33.46624
+Longitude: -84.44977
+
+Professional PSY0100009:
+Caroline Brackette is a Psychologist practicing in Brookhaven, Georgia. She is affiliated with The Brackette Firm, LLC. With 18 years of experience, Caroline specializes in ADHD, Anger Management, Anxiety/Panic Disorders, Behavioral Problems, Career/Employment Concerns, and more. You can reach her at (770) 308-8871. Her office address is 2002 Summit Blvd, Brookhaven, Georgia, Brookhaven, Georgia, USA.
+Latitude: 33.86996
+Longitude: -84.33039
+
+Professional PSY0100010:
+Zac Yanis is a Psychologist practicing in Decatur, Georgia. He is affiliated with Cognitive Rehabilitation of Georgia (CRG). With 2 years of experience, Zac specializes in Forensic, Neuropsychology, Alzheimer’s/Dementia. You can reach him at (404) 929-9009. Find more information about his practice at rehabgeorgia.com. His office address is 1276 McConnell Dr Ste C, Decatur, Georgia, Decatur, Georgia, USA.
+Latitude: 33.80941
+Longitude: -84.30801�hB}�uh)�(hBh@�h+}�hF}�(h@hUhBhVusub�$dafa2373-a383-419f-bbd5-1b677423f04b�h<)�}�(h}�(h@X�  Weekly Checkins
+In week 1:
+- Martha's mood was angry.
+- She experienced increasing irritability.
+- She slept for around 5 hours.
+- Her sleep was disrupted, waking up 2 or 3 times everyday.
+- She experienced agitation.
+- She wandered.
+- She vomited once.
+- The episode lasted less than 30 minutes.
+- It impacted her with fatigue.
+In week 2:
+- Martha's mood was frustrated.
+- She experienced delusions.
+- She slept for around 6 hours.
+- Her sleep was disrupted, waking up 1 times everyday.
+- She experienced agitation.
+- She wandered.
+- She vomited thrice.
+- The episode lasted more than 30 minutes,less than an hour.
+- It impacted her with Difficulty eating and drinking.
+In week 3:
+- Martha's mood was neutral.
+- She experienced less irritability.
+- She slept for around 8 hours.
+- Her sleep was disrupted only once.
+- She didnt experience anything negative.
+- She vomited once.
+- The episode lasted less than 30 minutes.
+langchain.vectorstores.faiss”ŒFAISS”“”)”}”(Œembedding_function”Œbuiltins”Œgetattr”“”Œlangchain.embeddings.openai”ŒOpenAIEmbeddings”“”)”}”(Œ__dict__”}”(Œclient”Œopenai.api_resources.embedding”Œ	Embedding”“”Œmodel”Œtext-embedding-ada-002”Œ
+deployment”hŒopenai_api_version”Œ ”Œopenai_api_base”hŒopenai_api_type”hŒopenai_proxy”hŒembedding_ctx_length”MÿŒopenai_api_key”Œ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”Œopenai_organization”hŒallowed_special””Œdisallowed_special”Œall”Œ
+chunk_size”MèŒmax_retries”KŒrequest_timeout”NŒheaders”NŒtiktoken_model_name”NuŒ__fields_set__””(hŒ__private_attribute_values__”}”ubŒembed_query”†”R”Œindex”NŒdocstore”Œlangchain.docstore.in_memory”ŒInMemoryDocstore”“”)”}”Œ_dict”}”(Œ$78f6ff0d-f205-4034-b90e-774c9afc54ab”Œlangchain.schema”ŒDocument”“”)”}”(h}”(Œpage_content”X³  Professional PSY0100001:
+- She experienced increasing irritability.
+- She slept for around 5 hours.
+- Her sleep was disrupted, waking up 2 or 3 times everyday.
+- She experienced agitation.
+- She wandered.
+- She vomited once.
+- The episode lasted less than 30 minutes.
+- It impacted her with fatigue.
+In week 2:
+- Martha's mood was frustrated.
+- She experienced delusions.
+- She slept for around 6 hours.
+- Her sleep was disrupted, waking up 1 times everyday.
+- She experienced agitation.
+- She wandered.
+- She vomited thrice.
+- The episode lasted more than 30 minutes,less than an hour.
+- It impacted her with Difficulty eating and drinking.
+In week 3:
+- Martha's mood was neutral.
+- She experienced less irritability.
+- She slept for around 8 hours.
+- Her sleep was disrupted only once.
+- She didnt experience anything negative.
+- She vomited once.
+- The episode lasted less than 30 minutes.
