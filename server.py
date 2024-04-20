@@ -1491,7 +1491,7 @@ def ask():
 
 
 @app.route("/voiceadvocate", methods=["POST"])
-def ask():
+def askvoice():
     global last_api_call_time
     global llmChain
     global count1
@@ -1535,7 +1535,7 @@ def ask():
 
         if not llmChain:
             # Initialize llmChain if it's not initialized yet
-            with open("training/voicemaster.txt", "r") as f:
+            with open("training/mastervoice.txt", "r") as f:
                 promptTemplate = f.read()
 
             prompt = Prompt(template=promptTemplate, input_variables=["history", "context", "question"])
