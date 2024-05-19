@@ -13,10 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
@@ -30,12 +26,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Create runtime.txt
-        run: echo "python-3.10" > runtime.txt
+    
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./* -r
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
@@ -53,46 +48,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Azure CLI Login
-        run: |
-          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
-          az account show
-
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: |
-          unzip release.zip
-          ls -R
-
-      - name: 'Set up environment variables from Key Vault'
-        id: keyvault
-        run: |
-          echo "OPENAI_API_KEY=$(az keyvault secret show --vault-name evvaaikey --name OpenAIKey --query value -o tsv)" >> $GITHUB_ENV
-          echo "API_SECRET=$(az keyvault secret show --vault-name evvaaikey --name APISecret --query value -o tsv)" >> $GITHUB_ENV
-          echo "MAP_KEY=$(az keyvault secret show --vault-name evvaaikey --name MapKey --query value -o tsv)" >> $GITHUB_ENV
-
-      - name: Print Azure Environment Variables
-        run: |
-          echo "Azure Environment Variables:"
-          echo "OPENAI_API_KEY: $OPENAI_API_KEY"
-          echo "API_SECRET: $API_SECRET"
-          echo "MAP_KEY: $MAP_KEY"
-
-      - name: Print Environment Variables
-        run: env | sort
-
-      - name: Print Debug Information
-        run: |
-          echo "AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}"
-          echo "AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}"
-          echo "AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}"
-          echo "OPENAI_API_KEY: $OPENAI_API_KEY"
-          echo "API_SECRET: $API_SECRET"
-          echo "MAP_KEY: $MAP_KEY"
+        run: unzip release.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
