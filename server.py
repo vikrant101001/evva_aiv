@@ -1436,6 +1436,9 @@ def ask():
         if 'sreched' in response:
             response = re.sub("sreched", '', response)
             like = 'yes'
+
+        if len(response) > 50:
+            like = 'yes'
         # Adjust insert_conversation to handle caregiver-specific history
         insert_conversation(user_question, response, careteam_id, caregiver_id)
 
@@ -1444,6 +1447,27 @@ def ask():
         return jsonify({"answer": response,"baymax_response" : baymax_response ,"previous_response": "currently not used", "searched": "currently not used","like":like, "success": True})
     except Exception as e:
         return jsonify({"answer": None, "baymax_response" : None, "success": False, "message": str(e)}), 400
+
+
+@app.route("/recievefeedback", methods=["POST"])
+def recievefeedback():
+    api_secret_from_frontend = request.headers.get('X-API-SECRET')
+    if api_secret_from_frontend != API_SECRET:
+        return jsonify({'error': 'Unauthorized access'}), 401
+
+    careteam_id = request.headers.get('careteamid')
+    caregiver_id = request.headers.get('userid')
+
+    if careteam_id == "not implied" or caregiver_id == "not implied":
+        return jsonify({'message': "Caregiver or careteam id not implied"})
+
+    try:
+        reqData = request.get_json()
+        ai_question = reqData['answer']
+        user_feedback = reqData['feedback']
+        return jsonify({ "success": True})
+    except Exception as e:
+        return jsonify({ "success": False, "message": str(e)}), 400
 
 
 
